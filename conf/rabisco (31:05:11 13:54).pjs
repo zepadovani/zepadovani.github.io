@@ -1,0 +1,145 @@
+// by josé henrique padovani
+  
+PFont fontA = loadFont("Arial");
+textFont(fontA, 20);
+int z=99;
+float a,b,c,d;
+float e,f,g,i;  
+float w=window.innerWidth;  //-23
+float h=window.innerHeight; //-11
+float x1,y1,l1,x2,y2,l2,x3,y3,l3,x4,y4,l4;
+float linksize=13;
+string thislink;
+
+float trampp = 15;
+float trampn = -15;  
+float curvep = 14;
+float curven = -14;  
+int m=0;  
+float colorp = round(random(4))*64;
+
+  
+  void setup(){
+    size(w, h);
+colorMode(HSB,255);  
+//    noStroke();
+
+    //background(250+random(2.0),253+random(2.0),240+random(14.0),20);
+  background(255,0,255);
+    a=random(w);
+    b=random(h);
+    e=a;//random(w/4)+w/2;
+    f=b;//random(h/3)+h/3;
+ fill(100,0,100,80);
+pushMatrix();
+translate(w-35,10);
+rotate(PI/2);
+text("josé henrique padovani,", 0, 0);
+textFont(fontA, 15);
+text("compositor/composer", 215, 0);
+popMatrix();
+
+pushMatrix();
+ fill(100,0,70,80);
+translate(w-525,h-6);
+textFont(fontA, 11);
+text("alguns direitos reservados / some rights reserved >> http://creativecommons.org/licenses/by-nc-sa/3.0/", 0, 0);
+popMatrix();
+
+pushMatrix();
+ fill(100,0,70,80);
+translate(5,h-6);
+textFont(fontA, 11);
+text("recarregue a página para limpar / reload the page to clean it", 0, 0);
+popMatrix();
+
+  
+  frameRate(25);
+ 
+
+  
+}
+  
+
+
+
+
+
+void draw(){
+
+  g++;
+  trampp = random(1.0,15);
+  trampn = -trampp;  
+  curvep = random(-13,13);
+  curven = -curvep;
+
+
+fill(255,0);
+
+
+
+c=a+random(trampn,trampp);
+d=b+random(trampn,trampp);
+
+
+
+ if(g>900){
+  g=0;}
+//if(g==0||g==200||g==400||g==600||g==800){
+// colorp = round(random(8))*30 + 30;
+//}
+  if(g==0||g==150||g==151||g==252||g==700||g==701){
+  c=random(w);
+  d=random(h);
+  curvep = random(w*0.05,w*0.07)*(float(round(random(0,1)))*2-1);
+  curven = random(w*0.05,w*0.07)*(float(round(random(0,1)))*2-1);
+}
+
+
+
+
+/*
+
+if(mousePressed){
+if(m==0){
+m=1;
+e=mouseX;
+f=mouseY;}
+g=mouseX+random(trampn,trampp);
+i=mouseY+random(trampn,trampp);
+strokeWeight(random(0.3,5.0));
+stroke(random(100)+155,0,0,pow(random(1.1,2.0),7));
+bezier(e,f,e+random(curven,curvep),f+random(curven,curvep),g+random(curven,curvep),i+random(curven,curvep),g,i);
+e=abs(g);
+f=abs(i);
+}else{
+m=0;
+}
+*/
+
+
+
+strokeWeight(random(0.2,1.4));
+//stroke(random(130.0)+90,random(90.0)+20,0,pow(random(1.1,2.0),7)+12);
+stroke((colorp+random(64.0))%255,random(170.0)+10,random(170.0)+30,random(150.0)+50);
+bezier(a,b,a+random(curven,curvep),b+random(curven,curvep),c+random(curven,curvep),d+random(curven,curvep),c,d);
+
+if(c>w){
+a=(c-w);}else if (c<0){
+a=w-abs(c);}else{
+a=c;}
+
+if(d>(h-4)){
+b=(d-h);
+}else if(d<0){
+b=h-4-abs(d);}else{
+b=d;}
+
+//a=abs(c%w);
+//b=abs(d%(h+4));
+
+
+
+}
+
+

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="keywords" content="josé henrique padovani velloso">
+    <title>/etc</title>
+    <link rel='shortcut icon' type='image/x-icon' href="conf/favicon.ico" />
+    <script type="text/javascript" src="conf/p5.min.js"></script>
+    <script type="text/javascript" src="conf/rabisco2017_c.js"></script>
+    <style>
+    body {
+      padding:0;
+      margin:0;
+      font-family: Arial;
+    }
+    #text { padding:30px; }
+    /* et pour superposer la canvas et le contenu html... */
+    canvas { position:fixed; top:0; left:0; z-index:1; focus:true }
+    #text { position:relative; z-index:2; }
+
+    </style>
+    <link rel="stylesheet" href="estilo_novo.css"/>
+</head>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setCookieDomain", "*.zepadovani.info"]);
+  _paq.push(["setDomains", ["*.zepadovani.info"]]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://zepadovani.info/piwiki/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4244359-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<div id="texto">
+<a href="./index.html"><font size="4">home</font></a>
+
+<div id="etc" style="width: 650px">
+  <h1>
+<p><b><span
+        style="font-weight: bold;"> Fonts:</span></b></p>
+	<p><b><a href="./etc/fonts/HarmoniaRN-PT.zip" onClick="javascript:
+	pageTracker._trackPageview('/downloads/etc/fonts/HarmoniaRN-PT.zip');
+	">Harmonia Roman Numerals PT</a></b> (ttf [zip]) <br> fonte para cifragem de
+  harmonia tonal com números romanos (<u>versão em português</u> / i.e.: nome
+  das notas "Dó", "R&eacute;", etc.) <br>baseada nas fontes <a
+  href="http://dejavu-fonts.org/wiki/Main_Page">"DejaVu Sans"</a> e
+  Emmentaler (<a href="http://lilypond.org/">LilyPond</a>)
+  <br><em> Roman numeral analysis
+  font (<u>portuguese version</u> / i.e.: note names are "Dó", "R&eacute;",
+  etc.) <br>
+  based on <a
+  href="http://dejavu-fonts.org/wiki/Main_Page">"DejaVu Sans"</a> and
+  Emmentaler (<a href="http://lilypond.org/">LilyPond</a>) fonts.  </em>
+    </p>
+	<p><b><a href="./etc/fonts/HarmoniaRN-EN.zip" onClick="javascript:
+	pageTracker._trackPageview('/downloads/etc/fonts/HarmoniaRN-EN.ttf');
+	">Harmonia Roman Numerals EN</a></b> (ttf [zip]) <br> fonte para cifragem de
+  harmonia tonal com números romanos (<u>versão em inglês</u> / i.e.: nome
+  das notas "C", "D", etc.) <br>baseada nas fontes <a
+  href="http://dejavu-fonts.org/wiki/Main_Page">"DejaVu Sans"</a> e
+  Emmentaler (<a href="http://lilypond.org/">LilyPond</a>)
+  <br><em> Roman numeral analysis
+  font (<u>english version</u> / i.e.: note names are "C", "D",
+  etc.) <br>
+  based on <a
+  href="http://dejavu-fonts.org/wiki/Main_Page">"DejaVu Sans"</a> and
+  Emmentaler (<a href="http://lilypond.org/">LilyPond</a>) fonts.  </em>
+    </p>
+
+<br>
+<p><b><span
+        style="font-weight: bold;"> PWGL:</span></b></p>
+	<p><b><a href="https://github.com/zepadovani/zosc" onClick="javascript:
+	pageTracker._trackPageview('/downloads/aps/zosc-v0.4-github');
+	">zosc-v0.4 (@github)</a></b><br>
+        biblioteca que permite criar conexões via
+	OSC no PWGL (utiliza <a
+	href="http://www.cliki.net/OSC">cl-osc</a> e <a
+	href="http://common-lisp.net/project/cl-net-snmp/lispworks.html">lispworks-udp</a>
+	| baseado no código para OSC de <a
+	href="http://recherche.ircam.fr/equipes/repmus/OpenMusic/download.html">OpenMusic
+	6.1</a>) [<u>nota: parece não estar funcionando na última versão
+do PWGL</u>]<br>
+        <em>a lib to create OSC connections in
+	PWGL. </em> (<em> uses <a
+	href="http://www.cliki.net/OSC">cl-osc</a> and <a
+	href="http://common-lisp.net/project/cl-net-snmp/lispworks.html">lispworks-udp</a>
+	| based on <a
+	href="http://recherche.ircam.fr/equipes/repmus/OpenMusic/download.html">OpenMusic
+	6.1</a> OSC code </em>). [<u>note: seems to be broken in PWGL
+last version</u>]
+    </p>
+    <p>
+  <b><a href="./etc/boulez-multiplication.pwgl.zip" onClick="javascript:
+	pageTracker._trackPageview('/downloads/patches/boulez-multiplication');
+	">boulez-multiplication.pwgl</a></b> (zip)<br>
+        patch PWGL que implementa a
+        multiplicação de acordes de P. Boulez <br>
+<em> PWGL patch with Boulez chord multiplication porcedure. </em><br/>
+    </p>
+<br>
+  <p><b><span
+        style="font-weight: bold;"> OpenMusic:</span></b></p>
+    <p>
+  <b><a href="./etc/equacaologistica.omp.zip" onClick="javascript:
+	pageTracker._trackPageview('/downloads/patches/lindenmeyer-patch.omp.zip');
+	">equacaologistica.omp</a></b> (zip)<br>
+        patch OpenMusic que
+        que gera dados atrav&eacute;s da equação logística (função está escrita em Common Lisp) <br><em> OpenMusic
+        patch that generates data according to the logistic equation
+        (the function is written in Common Lisp). </em><br/>
+    </p>
+  <p>
+  <b><a href="./etc/lindenmayer-patch.omp.zip" onClick="javascript:
+	pageTracker._trackPageview('/downloads/patches/lindenmeyer-patch.omp.zip');
+	">lindenmayer-patch.omp</a></b> (zip)<br> patch OpenMusic que
+        reproduz procedimento baseado em 0L-System <br> <em> OpenMusic
+        patch with an example of 0L-System procedure. </em><br/>
+    </p>
+    <p>
+    <b><a href="./etc/harmonics_string.omp.zip" onClick="javascript:
+  	pageTracker._trackPageview('/downloads/patches/harmonics_string.omp.zip');
+  	">harmonics_string.omp</a></b> (zip)<br> patch OpenMusic para escrita de harmônicos em instrumentos de corda. <b>input</b>: [1] altura da corda solta (midicents); [2] número do parcial harmônico (int) // <b>output</b>: [1] altura da corda solta (midicents); [2] altura do parcial harmônico resultante (midicents); [3] nós/posições para obter o parcial na corda em questão (midicents)<br/>
+   <em> OpenMusic for writing harmonics in string instruments. <b>input</b>: [1] open string pitch (midicents); [2] harmonic partial number (int) // <b>output</b>: [1] open string pitch (midicents); [2] pitch of the resulting sound (midicents); [3] nodes/positions to obtain the aimed partial in the given string (midicents)</em><br/>
+      </p>
+
+
+      <br/>
+<p><b><span
+        style="font-weight: bold;"> Pure Data:</span></b></p>
+    <p><b><a href="./etc/cepstrum-paper2009.pd" onClick="javascript:
+      pageTracker._trackPageview('/downloads/aps/pd/cepstrum-paper2009.pd');
+      ">cepstrum-paper2009.pd</a></b><br> uma abstração implementando a
+      filtragem de cepstrum [atualizado em 07-set-2016, versão vanilla
+e revisada] (veja também as extensões de
+    <a href="http://williambrent.conflations.com/pages/research.html"
+    onClick="javascript: pageTracker._trackPageview('/out/wbrent');
+    ">William Brent</a> se estiver interessado em cepstrum e em outras ferramentas espectrais)
+
+<br><em>an abstraction implementing
+      cepstrum filtering. [updated on 09-sept-2016, revised vanilla version] </em> (<em>Check also
+
+    <a href="http://williambrent.conflations.com/pages/research.html" onClick="javascript: pageTracker._trackPageview('/out/wbrent'); ">William Brent</a> externals if you are interested in cepstrum and other spectral tools</em>)</p><br/>
+
+<p><b><span
+        style="font-weight: bold;"> Lilypond:</span></b></p>
+    <p><a href="./etc/lilypond-and-aquamacs.html">How to configure
+    Aquamacs to work with LilyPond mode</a> (EN) - i.e.:
+    syntax-highlighting, compile and open the generated files from Aquamacs. <br/>
+
+</p><br/>
+
+<p><b><span
+        style="font-weight: bold;"> Arduino:</span></b></p>    </h1>
+    <h4>
+    <span><span
+        style="font-weight: bold; font-style: italic;">mesa </span>-
+        controlador USB/Bluetooth </span> <br />
+        <br />
+<a style="font-style:"
+        href="./etc/mesa.pde"
+        onClick="javascript: pageTracker._trackPageview('/downloads/codigos/mesapde'); "><em>código</em>/code </a> (Arduino .pde) <br />
+
+<a style="font-style:"
+        href="./etc/mesaGEM.zip"
+        onClick="javascript: pageTracker._trackPageview('/downloads/codigos/mesaGEM'); ">PD/GEM patch</a> (.zip) <br />
+
+<a style="font-style:"
+        href="../images/mesa-diagram.png"
+        onClick="javascript: pageTracker._trackPageview('/downloads/codigos/mesadiagram'); ">diagrama/<em>diagram</em></a> (.png)
+<table style="text-align: left; width: 95%;" border="0" cellpadding="2"
+cellspacing="10">
+  <tbody>
+    <tr>
+      <td>
+
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/1UY1reW1RMA&hl=en&fs=1&rel=0&color1=0xe1600f&color2=0xfebd01"></param><param name="allowFullScreen" value="false"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/1UY1reW1RMA&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false" width="425" height="344"></embed></object>
+
+
+
+         </td>
+      <td><span >nova versão /<em> new version</em></span><br />
+        <br />
+        <img style="width: 462px; height: 346px;" alt="" src="../images/novamesa.jpg"
+        /> </td>
+    </tr>
+  </tbody>
+</table></h4>
+
+<h1>
+(...)
+</h1>
+
+  </div>
+</div>
+  </body>
+</html>

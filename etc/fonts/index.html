@@ -1,0 +1,68 @@
+<html>
+<head>
+
+<script type="text/javascript" src="./processing.js"></script>
+
+<script type="text/javascript" src="./Font.js"></script>
+
+<style type="text/css">
+@font-face{
+  font-family: "harmonia";
+  src: url("http://zepadovani.info/etc/fonts/HarmoniaRomanNumeralsPT.ttf");
+}
+
+#control {
+    font-family: "harmonia";
+}
+
+</style>
+
+<title>processing.js font question</title>
+
+</head>
+
+<body>
+<div id="control">This is written in the font, clarendon.</div>
+
+<canvas id="main" width="400" height="400"></canvas>
+
+<script type="text/javascript">
+// let's load a font!
+var font = new Font();
+
+// error handler
+font.onerror = function(err) { alert(err); }
+
+// then kick off font loading by assigning the "src" property
+font.fontFamily ="clarendon";
+font.src = "http://zepadovani.info/etc/fonts/HarmoniaRomanNumeralsPT.ttf";
+
+// set up the onload handler
+font.onload = function() {
+
+        if(Processing) {
+                var canvas = document.getElementById("main");
+                var pjs = new Processing(canvas);
+
+                pjs.setup = function() {
+                pjs.size(400,400);
+                pjs.background(150);
+                pjs.textFont(pjs.createFont("harmonia", 18));
+
+
+                }
+
+                pjs.draw = function() {
+                pjs.text("This should be written in the same font.",10,25);
+                pjs.text("Why is this not the case?", 10, 50);
+        pjs.text("Allahjesusmosesbuddahvishnukrishnapomax;", 10, 75);
+                pjs.text("help me, please!", 10, 100);
+                }
+
+        pjs.setup();
+        pjs.draw();
+        }
+}
+</script>
+</body>
+</html>

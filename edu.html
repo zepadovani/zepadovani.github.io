@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="keywords" content="josé henrique padovani velloso">
+  <title>josé henrique padovani/edu (@ufmg)</title>
+  <link rel='shortcut icon' type='image/x-icon' href="conf/favicon.ico" />
+  <script type="text/javascript" src="conf/p5.min.js"></script>
+  <script type="text/javascript" src="conf/rabisco2017_c.js"></script>
+
+  <style>
+  @font-face {
+    font-family: avenir;
+    src: url("conf/avenir-next-lt-pro-light.otf") format("opentype");
+  }
+
+  body {
+    font-family: avenir;
+    font-size:11px;
+    cursor:default;
+    color:rgb(180,180,180);
+  }
+
+  html {
+    background-color:#323232;
+    font-family: avenir;
+    font-size:11px;
+  }
+  a {
+    font-family: avenir;
+    color:rgb(150,150,150);
+    font-weight:600;
+    text-decoration:none;
+  }
+  a:hover {
+    color:rgb(100,100,100);
+    text-decoration:underline;
+  }
+
+
+  h1 {
+    font-family: avenir;
+    text-align:justify;
+    width:90%;
+    font-size:14px;
+    color:rgba(185,185,185,200);
+    font-weight:400;
+    padding-left:15px;
+    line-height:1.4;
+  }
+
+  h2 {
+    font-family: avenir;
+    text-align:justify;
+    width:90%;
+    font-size:14px;
+    color:rgba(185,185,185,200);
+    font-weight:400;
+    padding-left:40px;
+    line-height:1.4;
+  }
+
+  h3 {
+    font-size:14px;
+    color:rgb(125,155,155);
+    font-weight:600;
+    padding-left:23px;
+    line-height:1.4;
+  }
+
+  h4 {
+    font-size:13px;
+    color:rgb(130,130,130);
+    font-weight:300;
+    padding-left:30px;
+  }
+  #content {
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    top:0px;
+    left:0px;
+
+
+  }
+  #texto {
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    font-family:sans-serif;
+    font-size:11px;
+    color:rgb(190,190,190);
+    top:0px;
+    left:0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    padding:0px;
+    z-index:20;
+    overflow:auto;
+
+  }
+  #text { padding:30px; }
+  /* et pour superposer la canvas et le contenu html... */
+  canvas { position:fixed; top:0; left:0; z-index:1; focus:true }
+  #text { position:relative; z-index:2; }
+
+  </style>
+
+</head>
+
+
+  <div id="texto" >
+  <a href="./index.html"><font size="4">home</font></a>
+      <br>
+          <br>
+    <br>
+    <body>
+      <h1>
+        <div id="edu" style="width: 950px">
+
+          <p style="  font-size: 120%; padding-left:4vw">
+            <b>Disciplinas (UFMG):</b><br/>
+          </p>
+          <p style="  font-size: 100%; padding-left:8vw">
+
+            <b>2020s1:</b><br/>
+            <a href="edu/ufmg/2020s1/harmonia/index.html">2020s1 - Harmonia I</a><br/>
+            <br/>
+            <br/>
+            <b>2019s2:</b><br/>
+            2019s2 - Harmonia II<br/>
+            <br/>
+            <b>2019s1:</b><br/>
+            2019s1 - Harmonia I<br/>
+
+              2019s1 -  "Algoritmos e técnicas composicionais aplicados aos processos analíticos e criativos" [tópicos/pós]
+
+              <br/>
+            <!-- <a href="2019s1/topicos_EBA/index.html"> -->
+              2019s1 -  "Questões audivisuais: experimentações performáticas em <i>visual music</i>" [Belas Artes]
+            <!-- </a> -->
+            <br/>
+            <br/>
+            <b>2018s2:</b>
+            <br/>
+            <!-- <a href="2018s2/harmonia/index.html"> -->
+              2018s2 - Harmonia II
+            <!-- </a> -->
+              <br/>
+            <!-- <a href="2018s2/topicos/index.html"> -->
+              2018s2 -  "Estudo introdutório das técnicas e práticas composicionais voltadas à música mista interativa" [tópicos/pós]
+            <!-- </a> -->
+              <br/>
+            <!-- <a href="2018s2/pac/index.html"> -->
+              2018s2 - Seminários PAC (Processos Analíticos e Criativos) [pós]
+            <!-- </a>  -->
+              <br/>
+            <br/>
+            <b>2018s1:</b>
+            <br/>
+            <!-- <a href="2018s1/harmonia/index.html"> -->
+              2018s1 - Harmonia I
+            <!-- </a> -->
+          </p>
+
+
+
+
+        </h1>
+
+      </div>
+      <!--
+      <div id="foto" style="
+      padding: 0 25px 150px 0px;
+      position: absolute;
+      bottom: 0;
+      right: 0;">
+
+      <img src="zpb.png" alt="" width="320px"/>
+    </div>
+  -->
+  <div id="container" style="position:absolute; top:0px; left:0px">
+    <canvas datasrc="./conf/rabisco.pjs">  </canvas>
+  </div>
+
+
+</body>
+</html>
