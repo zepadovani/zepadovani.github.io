@@ -1,23 +1,25 @@
 /**
- *  Pitch Detection using Auto Correlation.
- *
- *  Auto correlation multiplies each sample in a buffer by all
- *  of the other samples. This emphasizes the fundamental
- *  frequency.
- *
- *  Running the signal through a low pass filter prior to
- *  autocorrelation helps bring out the fundamental frequency.
- *
- *  The visualization is a correlogram, which plots
- *  the autocorrelations.
- *
- *  We calculate the pitch by counting the number of samples
- *  between peaks.
- *
- *  Example by Jason Sigal and Golan Levin.
- */
+*  Pitch Detection using Auto Correlation.
+*
+*  Auto correlation multiplies each sample in a buffer by all
+*  of the other samples. This emphasizes the fundamental
+*  frequency.
+*
+*  Running the signal through a low pass filter prior to
+*  autocorrelation helps bring out the fundamental frequency.
+*
+*  The visualization is a correlogram, which plots
+*  the autocorrelations.
+*
+*  We calculate the pitch by counting the number of samples
+*  between peaks.
+*
+*  Example by Jason Sigal and Golan Levin.
+*/
 
 let source, fft, lowPass;
+var shape=false;
+var tx=0;
 
 // center clip nullifies samples below a clip amount
 var doCenterClip = false;
@@ -32,27 +34,30 @@ var height;
 var nota = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 var oct = [-1,0,1,2,3,4,5,6,7,8,9];
 let pvals = [];
+let avals = [];
 var ix = 0;
-let lastix;
 var padleft = 40;
 var wpadleft;
 let level,amplitude;
 var levelthreshold = 0.02;
 
 function setup() {
-  var canvas = createCanvas(1280, 720);
-  width = 1280;
-  height = 720;
+  var canvas = createCanvas(windowWidth, windowHeight);
+  width = windowWidth;
+  height = windowHeight;
+  frameRate(30);
   canvas.parent('sketchdiv');
   wpadleft = width-padleft;
 
 
   for (let i = 0; i < wpadleft; i++) {
     pvals[i] = 0;
+    avals[i] = 0;
   }
+
   source = new p5.AudioIn();
   source.start();
-  touchStarted();
+  // touchStarted();
   amplitude = new p5.Amplitude();
   amplitude.setInput(source);
   amplitude.smooth(1);
@@ -71,7 +76,7 @@ function draw() {
   var freq = findFrequency(corrBuff);
   var note = noteFromPitch(freq);
   let level = amplitude.getLevel();
-
+  tx = tx+1;
   strokeWeight(1);
   ix = (ix+1)%wpadleft;
   background(255);
@@ -104,7 +109,7 @@ function draw() {
     }
     else
     {
-    xpos = 20;
+      xpos = 20;
     };
 
     text(thistext,xpos,height - ((noteheight*i)+1));
@@ -115,178 +120,216 @@ function draw() {
   // array of values from -1 to 1
 
   if(level>levelthreshold){
-  pvals[ix] = note;}
-  else{pvals[ix] = 0};
-  console.log(level);
-
-
-
-
-
-
-  //stroke(0);
-  //strokeWeight(2);
-  // beginShape();
-  // for (var i = 0; i < (width-padleft); i++) {
-  //   var w = i+padleft;
-  //   var h = map(pvals[i], 0, 127, height, 0);
-  //   curveVertex(w, h);
-  // }
-  // endShape();
-
-  var amp = map(level,0,0.5,100,0);
-  stroke(amp);
-  strokeWeight(1.5);
-  for (var i = 0; i < wpadleft; i++) {
-    var hval = pvals[i];
-    var lval1 = pvals[(i-1)%wpadleft];
-    var w = i+padleft;
-    var h = map(pvals[i], 0, 127, height, 0);
-
-    if((hval>0)&&((lval1==0)||(i==0))){
-      beginShape();
+    pvals[ix] = note;
+    avals[ix] = level;
+  }
+    else{
+      pvals[ix] = 0;
+      avals[ix] = 0
     };
+    console.log(level);
 
-    if(hval>0){
-      curveVertex(w, h);
-    };
 
-    if((hval==0)&&(lval1>0)){
-      endShape();
+
+
+
+
+    //stroke(0);
+    //strokeWeight(2);
+    // beginShape();
+    // for (var i = 0; i < (width-padleft); i++) {
+    //   var w = i+padleft;
+    //   var h = map(pvals[i], 0, 127, height, 0);
+    //   curveVertex(w, h);
+    // }
+    // endShape();
+
+
+
+    for (var i = 0; i < wpadleft; i++) {
+      var hval = pvals[i];;
+      var nval = pvals[(i+1)%wpadleft];
+      var lval1 = pvals[(i-1)%wpadleft];
+      var lval2 = pvals[(i-2)%wpadleft];
+      var lval3 = pvals[(i-3)%wpadleft];
+
+      stroke(map(avals[i],0,0.2,100,0));
+      //strokeWeight(map(avals[i],0,0.2,1,100));
+      strokeWeight(1.4);
+
+      // if((shape==true)&&(hval>0)){
+      //   endShape();
+      //   beginShape();
+      // };
+
+      // if(tx>4){
+      //   if(abs(pvals[i] - ((lval1+lval2+lval3)/3)) > 1){
+      //     hval = ((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1
+      //   }else{
+      //     hval = pvals[i];
+      //   };
+      // };
+
+
+
+      if((hval>0)&&((lval1==0)||(i==0))){
+        beginShape();
+        shape = true;
+      };
+
+      if(hval>0){
+        shape = true;
+        var w = i+padleft;
+        var h;
+
+        if((lval3>0)&&(lval2>0)&&(lval1>0)&&(abs(pvals[i] - ((lval1+lval2+lval3)/3)) > 1)) {
+          h = map(((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1, 0, 127, height, 0);
+        }else{
+          h = map(hval, 0, 127, height, 0);
+        };
+        curveVertex(w, h);
+      };
+
+      if((hval==0)&&(lval1>0)){
+        endShape();
+        shape=false;
+      }
+
+      if((hval>0)&&(i==(wpadleft-1))){
+        endShape();
+        shape=false;
+      }
+
+
+
+
+      //point(w, h);
     }
 
-    if((hval>0)&&(i==(wpadleft-1))){
-      endShape();
+
+
+
+    //
+    // fill(0);
+    // text ('Center Clip: ' + centerClipThreshold, 20, 20);
+    // //line (0, height/2, width, height/2);
+    //
+    //
+    // text ('Fundamental Frequency: ' + freq.toFixed(2), 20, 50);
+  }
+
+
+
+  // accepts a timeDomainBuffer and multiplies every value
+  function autoCorrelate(timeDomainBuffer) {
+
+    var nSamples = timeDomainBuffer.length;
+
+    // pre-normalize the input buffer
+    if (preNormalize){
+      timeDomainBuffer = normalize(timeDomainBuffer);
     }
 
-
-    //point(w, h);
-  }
-
-
-  lastix = ix;
-
-  //
-  // fill(0);
-  // text ('Center Clip: ' + centerClipThreshold, 20, 20);
-  // //line (0, height/2, width, height/2);
-  //
-  //
-  // text ('Fundamental Frequency: ' + freq.toFixed(2), 20, 50);
-}
-
-
-
-// accepts a timeDomainBuffer and multiplies every value
-function autoCorrelate(timeDomainBuffer) {
-
-  var nSamples = timeDomainBuffer.length;
-
-  // pre-normalize the input buffer
-  if (preNormalize){
-    timeDomainBuffer = normalize(timeDomainBuffer);
-  }
-
-  // zero out any values below the centerClipThreshold
-  if (doCenterClip) {
-    timeDomainBuffer = centerClip(timeDomainBuffer);
-  }
-
-  var autoCorrBuffer = [];
-  for (var lag = 0; lag < nSamples; lag++){
-    var sum = 0;
-    for (var index = 0; index < nSamples-lag; index++){
-      var indexLagged = index+lag;
-      var sound1 = timeDomainBuffer[index];
-      var sound2 = timeDomainBuffer[indexLagged];
-      var product = sound1 * sound2;
-      sum += product;
+    // zero out any values below the centerClipThreshold
+    if (doCenterClip) {
+      timeDomainBuffer = centerClip(timeDomainBuffer);
     }
 
-    // average to a value between -1 and 1
-    autoCorrBuffer[lag] = sum/nSamples;
-  }
+    var autoCorrBuffer = [];
+    for (var lag = 0; lag < nSamples; lag++){
+      var sum = 0;
+      for (var index = 0; index < nSamples-lag; index++){
+        var indexLagged = index+lag;
+        var sound1 = timeDomainBuffer[index];
+        var sound2 = timeDomainBuffer[indexLagged];
+        var product = sound1 * sound2;
+        sum += product;
+      }
 
-  // normalize the output buffer
-  if (postNormalize){
-    autoCorrBuffer = normalize(autoCorrBuffer);
-  }
-
-  return autoCorrBuffer;
-}
-
-
-// Find the biggest value in a buffer, set that value to 1.0,
-// and scale every other value by the same amount.
-function normalize(buffer) {
-  var biggestVal = 0;
-  var nSamples = buffer.length;
-  for (var index = 0; index < nSamples; index++){
-    if (abs(buffer[index]) > biggestVal){
-      biggestVal = abs(buffer[index]);
+      // average to a value between -1 and 1
+      autoCorrBuffer[lag] = sum/nSamples;
     }
-  }
-  for (var index = 0; index < nSamples; index++){
 
-    // divide each sample of the buffer by the biggest val
-    buffer[index] /= biggestVal;
-  }
-  return buffer;
-}
-
-// Accepts a buffer of samples, and sets any samples whose
-// amplitude is below the centerClipThreshold to zero.
-// This factors them out of the autocorrelation.
-function centerClip(buffer) {
-  var nSamples = buffer.length;
-
-  // center clip removes any samples whose abs is less than centerClipThreshold
-  centerClipThreshold = map(mouseY, 0, height, 0,1);
-
-  if (centerClipThreshold > 0.0) {
-    for (var i = 0; i < nSamples; i++) {
-      var val = buffer[i];
-      buffer[i] = (Math.abs(val) > centerClipThreshold) ? val : 0;
+    // normalize the output buffer
+    if (postNormalize){
+      autoCorrBuffer = normalize(autoCorrBuffer);
     }
+
+    return autoCorrBuffer;
   }
-  return buffer;
-}
 
-// Calculate the fundamental frequency of a buffer
-// by finding the peaks, and counting the distance
-// between peaks in samples, and converting that
-// number of samples to a frequency value.
-function findFrequency(autocorr) {
 
-  var nSamples = autocorr.length;
-  var valOfLargestPeakSoFar = 0;
-  var indexOfLargestPeakSoFar = -1;
-
-  for (var index = 1; index < nSamples; index++){
-    var valL = autocorr[index-1];
-    var valC = autocorr[index];
-    var valR = autocorr[index+1];
-
-    var bIsPeak = ((valL < valC) && (valR < valC));
-    if (bIsPeak){
-      if (valC > valOfLargestPeakSoFar){
-        valOfLargestPeakSoFar = valC;
-        indexOfLargestPeakSoFar = index;
+  // Find the biggest value in a buffer, set that value to 1.0,
+  // and scale every other value by the same amount.
+  function normalize(buffer) {
+    var biggestVal = 0;
+    var nSamples = buffer.length;
+    for (var index = 0; index < nSamples; index++){
+      if (abs(buffer[index]) > biggestVal){
+        biggestVal = abs(buffer[index]);
       }
     }
+    for (var index = 0; index < nSamples; index++){
+
+      // divide each sample of the buffer by the biggest val
+      buffer[index] /= biggestVal;
+    }
+    return buffer;
   }
 
-  var distanceToNextLargestPeak = indexOfLargestPeakSoFar - 0;
+  // Accepts a buffer of samples, and sets any samples whose
+  // amplitude is below the centerClipThreshold to zero.
+  // This factors them out of the autocorrelation.
+  function centerClip(buffer) {
+    var nSamples = buffer.length;
 
-  // convert sample count to frequency
-  var fundamentalFrequency = sampleRate() / distanceToNextLargestPeak;
-  return fundamentalFrequency;
-}
+    // center clip removes any samples whose abs is less than centerClipThreshold
+    centerClipThreshold = map(mouseY, 0, height, 0,1);
 
-function noteFromPitch( frequency ) {
-	var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
-	//return Math.round( noteNum ) + 69;
-	return noteNum + 69;
-}
+    if (centerClipThreshold > 0.0) {
+      for (var i = 0; i < nSamples; i++) {
+        var val = buffer[i];
+        buffer[i] = (Math.abs(val) > centerClipThreshold) ? val : 0;
+      }
+    }
+    return buffer;
+  }
 
-function touchStarted() { getAudioContext().resume(); }
+  // Calculate the fundamental frequency of a buffer
+  // by finding the peaks, and counting the distance
+  // between peaks in samples, and converting that
+  // number of samples to a frequency value.
+  function findFrequency(autocorr) {
+
+    var nSamples = autocorr.length;
+    var valOfLargestPeakSoFar = 0;
+    var indexOfLargestPeakSoFar = -1;
+
+    for (var index = 1; index < nSamples; index++){
+      var valL = autocorr[index-1];
+      var valC = autocorr[index];
+      var valR = autocorr[index+1];
+
+      var bIsPeak = ((valL < valC) && (valR < valC));
+      if (bIsPeak){
+        if (valC > valOfLargestPeakSoFar){
+          valOfLargestPeakSoFar = valC;
+          indexOfLargestPeakSoFar = index;
+        }
+      }
+    }
+
+    var distanceToNextLargestPeak = indexOfLargestPeakSoFar - 0;
+
+    // convert sample count to frequency
+    var fundamentalFrequency = sampleRate() / distanceToNextLargestPeak;
+    return fundamentalFrequency;
+  }
+
+  function noteFromPitch( frequency ) {
+    var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
+    //return Math.round( noteNum ) + 69;
+    return noteNum + 69;
+  }
+
+  function touchStarted() { getAudioContext().resume(); }
