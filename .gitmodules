@@ -1,0 +1,3 @@
+[submodule "p5_pitchtrack"]
+	path = p5_pitchtrack
+	url = https://github.com/zepadovani/p5_pitchtrack
