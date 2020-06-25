@@ -19,7 +19,7 @@
 
 let source, fft, lowPass;
 var shape=false;
-var tx=0;
+
 
 // center clip nullifies samples below a clip amount
 var doCenterClip = false;
@@ -28,12 +28,12 @@ var centerClipThreshold = 0.0;
 // normalize pre / post autocorrelation
 var preNormalize = true;
 var postNormalize = true;
-var numnotes = 37;
-var notemin = 60;
-var width;
-var height;
-var nota = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-var oct = [-1,0,1,2,3,4,5,6,7,8,9];
+var numnotes = 37; // range de notas (3 oitavas + 1 nota)
+var notemin = 60;  // nota mínima (Dó4)
+var width;  //variável para armazenar largura
+var height; //variável para armazenar altura
+var nota = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"]; //nome das notas
+var oct = [-1,0,1,2,3,4,5,6,7,8,9]; //oitavas
 let pvals = [];
 let avals = [];
 var ix = 0;
@@ -43,48 +43,55 @@ let level,amplitude;
 var levelthreshold = 0.02;
 
 function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight);
-  width = windowWidth;
-  height = windowHeight;
-  frameRate(30);
-  canvas.parent('sketchdiv');
-  wpadleft = width-padleft;
+  var canvas = createCanvas(windowWidth, windowHeight); //cria canvas do p5.js
+  width = windowWidth;  //largura
+  height = windowHeight;//altura
+  frameRate(30); //frameRate
+  canvas.parent('sketchdiv'); //div da página html onde o canvas p5.js será criado
+  wpadleft = width-padleft; // área horizontal útil a desenhar (para não rabiscar em cima dos rótulos)
 
-
+// iniciar arrays de amplitude e pitch
   for (let i = 0; i < wpadleft; i++) {
     pvals[i] = 0;
     avals[i] = 0;
   }
 
+//iniciar fonte de áudio
   source = new p5.AudioIn();
   source.start();
-  // touchStarted();
+
+// iniciar detector de amplitude
   amplitude = new p5.Amplitude();
   amplitude.setInput(source);
   amplitude.smooth(1);
 
+//iniciar filtro passa baixa
   lowPass = new p5.LowPass();
   lowPass.disconnect();
   source.connect(lowPass);
 
+//iniciar FFT
   fft = new p5.FFT();
   fft.setInput(lowPass);
 }
 
+//função de desenho, atualizada a cada frame
 function draw() {
-  var timeDomain = fft.waveform(1024, 'float32');
-  var corrBuff = autoCorrelate(timeDomain);
-  var freq = findFrequency(corrBuff);
-  var note = noteFromPitch(freq);
-  let level = amplitude.getLevel();
-  tx = tx+1;
-  strokeWeight(1);
-  ix = (ix+1)%wpadleft;
-  background(255);
-  stroke(200);
+  var timeDomain = fft.waveform(1024, 'float32'); //FFT
+  var corrBuff = autoCorrelate(timeDomain);       //autocorrelação
+  var freq = findFrequency(corrBuff);             //retorna frequencia a partir de autocorrelação
+  var note = noteFromPitch(freq);                 //convert frequencia para pitch (MIDI)
+  let level = amplitude.getLevel();               //retorna o nível de amplitude
+  strokeWeight(1);                                //espessura da linha de desenho
+  ix = (ix+1)%wpadleft;                           //ponteiro que varre a área a desenhar a curva de pitch
+  background(255);                                //gera fundo branco
+  stroke(200);                                    //seta cor cinza clara para desenho
   var up=0;
-  var noteheight = (height/numnotes);
-  for (var i = 0 ; i < (notemin + numnotes); i++){
+  var noteheight = (height/numnotes);             //altura de retângulo p/ cada nota
+
+
+  //faixas retangulares para cada nota
+  for (var i = 0 ; i < (numnotes); i++){ // se for "nota branca" (sem alteração): quadrado mais claro, senão, mais escuro
     if((i%12==0)||(i%12==2)||(i%12==4)||(i%12==5)||(i%12==7)||(i%12==9)||(i%12==11)){
       fill(240);
     }
@@ -92,33 +99,36 @@ function draw() {
     {fill(210);};
     stroke(200);
     rect(0,height - ((noteheight*(i+1))+up), width, noteheight);
-    if(i%12==0){
+    if(i%12==0){ //se for nota dó, cria linha mais escura de referência para separar oitavas
       stroke(0);
       line(0,height - ((noteheight*(i))+up),width,height - ((noteheight*(i))+up));
     };
   }
 
-  for (var i=0; i < (numnotes+notemin); i++){
+//i vai de 0 até o numero de notas para gerar rotulos/texto de cada faixa de altura
+  for (var i = 0; i < (numnotes); i++){
     var pc = i%12;
-    var thistext = nota[pc] + str(floor(i/12)-1+floor(notemin/12));
+    var thistext;//
     var xpos;
-    textSize((height/720)*5);
-    fill(40);
+    thistext =  nota[pc] + str(floor((i+notemin)/12)-1); //texto/rótulo da nota
     if((pc==0)||(pc==2)||(pc==4)||(pc==5)||(pc==7)||(pc==9)||(pc==11)){
-      xpos = 10;
+      xpos = 10;//margem à esquerda de notas sem alteração
     }
     else
     {
-      xpos = 20;
+      xpos = 20; //margem à esquerda de notas com alteração
     };
-
+    textSize(height/(numnotes*1.25)); // tamanho do texto é proporcional ao numero de notas
+    noStroke(); //sem stroke para escrever rótulo das notas
+    fill(60);//cor do texto
     text(thistext,xpos,height - ((noteheight*i)+1));
-    //text(thistext,10,height - ((noteheight*i)+1));
+    //
   }
+
+  //curvas não tem fill
   noFill();
 
-  // array of values from -1 to 1
-
+//gate de amplitude: só armazena dados nos arrays se amplitude for maior que determinado nível de amplitude
   if(level>levelthreshold){
     pvals[ix] = note;
     avals[ix] = level;
@@ -127,25 +137,8 @@ function draw() {
       pvals[ix] = 0;
       avals[ix] = 0
     };
-    console.log(level);
 
-
-
-
-
-
-    //stroke(0);
-    //strokeWeight(2);
-    // beginShape();
-    // for (var i = 0; i < (width-padleft); i++) {
-    //   var w = i+padleft;
-    //   var h = map(pvals[i], 0, 127, height, 0);
-    //   curveVertex(w, h);
-    // }
-    // endShape();
-
-
-
+    //desenha curva dos pitches detectados a cada quadro...
     for (var i = 0; i < wpadleft; i++) {
       var hval = pvals[i];;
       var nval = pvals[(i+1)%wpadleft];
@@ -154,26 +147,11 @@ function draw() {
       var lval3 = pvals[(i-3)%wpadleft];
 
       stroke(map(avals[i],0,0.2,100,0));
-      //strokeWeight(map(avals[i],0,0.2,1,100));
-      strokeWeight(1.4);
-
-      // if((shape==true)&&(hval>0)){
-      //   endShape();
-      //   beginShape();
-      // };
-
-      // if(tx>4){
-      //   if(abs(pvals[i] - ((lval1+lval2+lval3)/3)) > 1){
-      //     hval = ((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1
-      //   }else{
-      //     hval = pvals[i];
-      //   };
-      // };
-
+      strokeWeight(1.4); // espessura da linha de desenho dos pitches
 
 
       if((hval>0)&&((lval1==0)||(i==0))){
-        beginShape();
+        beginShape(); //inicia linha
         shape = true;
       };
 
@@ -183,7 +161,7 @@ function draw() {
         var h;
 
         if((lval3>0)&&(lval2>0)&&(lval1>0)&&(abs(pvals[i] - ((lval1+lval2+lval3)/3)) > 1)) {
-          h = map(((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1, 0, 127, height, 0);
+          h = map(((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1, notemin, notemin+numnotes, height, 0); //tentativa de criar média dos ultimos tres valores
         }else{
           h = map(hval, notemin, notemin+numnotes, height, 0);
         };
@@ -203,24 +181,15 @@ function draw() {
 
 
 
-      //point(w, h);
+
     }
 
 
-
-
-    //
-    // fill(0);
-    // text ('Center Clip: ' + centerClipThreshold, 20, 20);
-    // //line (0, height/2, width, height/2);
-    //
-    //
-    // text ('Fundamental Frequency: ' + freq.toFixed(2), 20, 50);
   }
 
 
 
-  // accepts a timeDomainBuffer and multiplies every value
+  // funcao de autocorrelação
   function autoCorrelate(timeDomainBuffer) {
 
     var nSamples = timeDomainBuffer.length;
