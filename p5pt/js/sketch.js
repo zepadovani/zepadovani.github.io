@@ -28,7 +28,8 @@ var centerClipThreshold = 0.0;
 // normalize pre / post autocorrelation
 var preNormalize = true;
 var postNormalize = true;
-var numnotes = 127;
+var numnotes = 37;
+var notemin = 60;
 var width;
 var height;
 var nota = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
@@ -83,7 +84,7 @@ function draw() {
   stroke(200);
   var up=0;
   var noteheight = (height/numnotes);
-  for (var i = 0 ; i < numnotes; i++){
+  for (var i = 0 ; i < (notemin + numnotes); i++){
     if((i%12==0)||(i%12==2)||(i%12==4)||(i%12==5)||(i%12==7)||(i%12==9)||(i%12==11)){
       fill(240);
     }
@@ -97,15 +98,14 @@ function draw() {
     };
   }
 
-  for (var i=0; i < numnotes; i++){
+  for (var i=0; i < (numnotes+notemin); i++){
     var pc = i%12;
-    var thistext = nota[pc] + str(floor(i/12)-1);
+    var thistext = nota[pc] + str(floor(i/12)-1+floor(notemin/12));
     var xpos;
     textSize((height/720)*5);
     fill(40);
     if((pc==0)||(pc==2)||(pc==4)||(pc==5)||(pc==7)||(pc==9)||(pc==11)){
       xpos = 10;
-
     }
     else
     {
@@ -185,7 +185,7 @@ function draw() {
         if((lval3>0)&&(lval2>0)&&(lval1>0)&&(abs(pvals[i] - ((lval1+lval2+lval3)/3)) > 1)) {
           h = map(((lval1+lval2+lval3)/3)*0.9 + pvals[i]*0.1, 0, 127, height, 0);
         }else{
-          h = map(hval, 0, 127, height, 0);
+          h = map(hval, notemin, notemin+numnotes, height, 0);
         };
         curveVertex(w, h);
       };
