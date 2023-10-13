@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon-cd1caa8f.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script type="module" crossorigin src="/assets/index-a9f74605.js"></script>
+    <link rel="stylesheet" href="/assets/index-80e16b2a.css">
+  </head>
+  <body class="impress-not-supported">
+    <div id='wrapper' class='wrapper'>
+
+
+      
+      <!--   -->
+      <div id="menul" class="menul">
+        <a id="homelink" href="http://josehenriquepadovani.com" style="text-decoration: none;"><span id="homelink_icon" class="mdi touchicon">home</span></a>
+        <a id="fullscreenlink" href="#" onclick="toggleFullScreen()" style="text-decoration: none;"><span id="fullscreen_icon" class="mdi touchicon">fullscreen</span></a>
+        <a id="videolink" href="#" style="text-decoration: none;"><span id="videolink_icon" class="mdi touchicon">smart_display</span>
+        <a id="menulink" href="#" style="text-decoration: none;"><span id="menulink_icon" class="mdi touchicon">chevron_right</span>
+      </div>
+
+      <div id="backgrounddiv"
+        style="position: fixed; top: 0; width: 100%; height: 100%; z-index: -10">
+        <!-- <video autoplay muted loop muted id="bgvid">
+        <source src="./videos/Singing Bird on Wall Automaton [1nPBbF1h-9Q].mkv" type="video/mp4">
+      </video> -->
+      </div>
+
+      <div id="video_div" class="ytDiv" >
+        <div class="js-player plyr__video-embed" id="vd" style="width: 20vmax; height: 11vmax" >
+            <iframe
+            id="yt_iframe"
+            src="https://www.youtube.com/embed/R-Os517wwX0?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+            allowfullscreen
+            allowtransparency
+            allow="autoplay"
+            ></iframe>
+        </div>
+        </div>
+
+
+
+      <div id="logodiv">
+        <a href="http://musica.ufmg.br/padovani/">
+          <img src="/assets/logo_ufmg-38773dfd.svg" id="logoimg"
+            style="background:none; border:none; box-shadow:none;">
+          <br />
+        </a><br />
+
+      </div>
+      <!--
+        For example this fallback message is only visible when there is `impress-not-supported` class on body.
+    -->
+      <!-- <div class="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div> -->
+
+      <div id="impress" class="impressdiv" data-max-scale="1"
+        data-min-scale="0.95">
+
+        <div id="title" class="step slide" data-x="0" data-y="0">
+
+        <title>Listening with machines, composing with birds</title>    
+        <subtitle>research and compositional approaches in <span style="font-style: italic">nós, passarinho</span>, for flute and live electronics.*</subtitle>
+      
+<!-- 
+          <title> Making Senses </title>
+          <subtitle> Crafting Sounds, Transductions, and Inscriptions Between
+            Humans and Non-Humans </subtitle> -->
+          <author> José Henrique Padovani </author>
+          <authorcontact>(<a href="mailto:jhp@ufmg.br">jhp@ufmg.br</a>)</authorcontact>
+          <Br/><br/><Br/><br/><Br/><br/><Br/><br/>
+          <f70>* research funded by: CNPq and FAPEMIG</f70> 
+        </div>
+
+        <div id="02" class="step slide" data-rel-x="2000"
+          data-rel-y="0" style="padding-top: 8vh;">
+
+          
+            <h2s>1. Context</h2s>
+            <br/>
+            <descr>Compositional, circunstancial, and research contexts.</descr>
+
+            
+            <h2s>2. Composing with birds, listening with machines</h2s>
+            <br/>
+            <descr>Overview of the creative process.</descr>
+
+            <h2s>3. Inscriptions</h2s>
+            <br/>
+            <descr>Inscription: writing, transcription, notation, recording, coding/patching, etc.</descr>
+
+            
+            <h2s>4. Outdoor Electronics</h2s>
+            <br/>
+            <descr>Open form and creative process; structure of the electronic processes.</descr>
+
+            <h2s>5. Final remarks</h2s>
+            <br/>
+            <descr>Future unfoldings; crafting sensory and cognitive extensions to listen and compose.</descr>
+          
+
+        </div>
+
+        <div id="03" class="step slide" data-rel-x="2000"
+          data-rel-y="0">
+
+          <span class="markdown">
+            ## 1. Context
+          </span>
+            
+          <titpoesia>Poeminho do contra</titpoesia>
+            
+            <span class="markdown">  
+
+            > Todos esses que aí estão
+            >
+            > atravancando o meu caminho
+            >
+            > Eles passarão...
+            >
+            > Eu passarinho!
+          </span> 
+          <span style="padding-left: 8rem;"></span><f80>Mário Quintana, <i>Caderno H</i> (2013)</f80>
+        </div>
+
+
+        <div id="04" class="step slide" data-rel-x="0"
+          data-rel-y="400">
+      
+
+          
+           title: <h2s>nós, passarinho</h2s>
+        <br/><br/>
+        <span style="padding-left: 8rem;"></span> Vocative comma: 
+        <descr><i>Nós, passarinho, ...</i><br/> <f90><i>We, little bird, ...</i></f90></descr>
+      
+        <span style="padding-left: 8rem;"></span> Apposition / implict description: 
+        <descr><i>Nós, [somos um] passarinho, ...</i><br/>
+          <f90><i>We, [are a] little bird, ...</i></f90></descr>
+
+        <span style="padding-left: 8rem;"></span> Simple separation: 
+        <descr><i>Nós, <span style="padding-left: 6rem;"></span> passarinho</i> <br/>
+          <f90><i>We, <span style="padding-left: 6.6rem;"></span> little bird</i></f90></descr>
+        <br/>
+       
+        </div>
+
+        <div id="05" class="step slide" data-rel-x="0"
+        data-rel-y="700">
+
+        <div id="street-view" style="width: 100%; height: 100%;"></div>
+        <script>
+          function initMap() {
+              var streetViewDiv = document.getElementById('street-view');
+              var panorama = new google.maps.StreetViewPanorama(streetViewDiv, {
+                  position: { lat: -20.1234077, lng: -44.2203067 },
+                  pov: { heading: 170.75, pitch: 0 },
+                  zoom: 1
+              });
+          }
+      </script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpxaH8BKMHZfD33zdgZFb6E9dfAL8T8kI&callback=initMap"
+          async defer>
+        </script>
+      </div>
+
+      <div id="06" class="step slide" data-rel-x="0"
+      data-rel-y="800">
+
+      <div class="img-container">
+        <img
+          src="/assets/esquema_nospassarinho-bd609469.jpg" width="70%">
+      </div>
+    </div>
+    
+    <div id="07" class="step slide" data-rel-x="0"
+    data-rel-y="800">
+
+    <div class="img-container">
+      <img
+        src="/assets/jbl_gaiola-f3537c86.jpg" width="50%">
+    </div>
+  </div>
+
+  <div id="08" class="step slide" data-rel-x="0"
+  data-rel-y="800">
+
+<h3>related research projects:</h3>
+
+ 
+  <br/>
+  <img src="/assets/logo_fapemig-b2dcc0d2.svg" width="110rem"> <f80><b>FAPEMIG 001/2021 - Demanda Universal research fund</b></f80>
+  <br/>
+  <f70><i></i>Strategies for the development, adaptation, and application of machine 
+  listening/learning models and techniques in analytical-creative processes 
+  focused on instrumental, electroacoustic, audiovisual, and interactive music.</i></f70>
+<br/><br/>
+<br/>
+  <img src="/assets/logo_cnpq-3f29ce0f.png" width="110rem"> <f80><b>CNPq/MCTI/FNDCT Nº 18/2021 research fund</b></f80>
+  <br/>
+  <f70><i></i>Study, development and application of real-time audiovisual techniques and processes in interactive music
+    .</i></f70>
+
+</div>
+
+
+
+<div id="09" class="step slide" data-rel-x="2000"
+data-y="0">
+
+<span class="markdown">
+  ## 2. Composing with birds, listening with machines
+
+  - extensive use of Python (libraries: librosa, essentia, abjad, xenocanto, etc.)
+</span>
+<br/>
+  
+<div class="img-container">
+<video autoplay muted width="80%" loop>
+  <source src="/assets/codigos_python-19054d1d.mp4" type="video/mp4" >
+</video>
+</div>
+</div>
+
+<div id="10" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - development of personal mechanisms for sound resynthesis, partial visualization, and musical transcription
+</span>
+<br/>
+  
+<div class="img-container">
+<video autoplay muted width="80%" loop>
+  <source src="/assets/materiais_plots_synths_e_transcricoes-9417e05b.mp4" type="video/mp4" >
+</video>
+</div>
+</div>
+
+<div id="11" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - xenocanto.org
+</span>
+<br/>
+  
+<div class="img-container">
+<video autoplay muted width="70%" loop>
+  <source src="/assets/xenocanto_site-b6977743.mp4" type="video/mp4" >
+</video>
+</div>
+</div>
+
+<div id="12" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - Python access to xeno-canto.org
+</span>
+<br/>
+  
+<div class="img-container">
+<video autoplay muted width="80%" loop>
+  <source src="/assets/datasets_xenocanto.org-1240af76.mp4" type="video/mp4" >
+</video>
+</div>
+</div>
+
+<div id="13" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - "Aves de Inhotim" [https://conteudo.inhotim.org.br/guia-de-aves](https://conteudo.inhotim.org.br/guia-de-aves)
+</span>
+<br/>
+  
+
+  <div class="img-container">
+    <img
+      src="/assets/capa_guia_aves_inhotim-6ac2acbf.png" height="80%">
+  </div>
+
+</div>
+
+<div id="14" class="step slide" data-rel-x="2000"
+data-y="0">
+
+<span class="markdown">
+  ## 3. Inscriptions
+
+  - consolidation in spreadsheet and file conversion
+</span>
+<br/>
+  
+<div class="img-container">
+<video autoplay muted width="80%" loop>
+  <source src="/assets/tabela-d92e8135.mp4" type="video/mp4" >
+</video>
+</div>
+</div>
+
+<div id="15" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - simplest way: use sonograms as computer-aided composition resouce
+</span>
+<br/>
+  
+<div class="img-container">
+  <img
+    src="/assets/sonogram-3fc1cd9b.png" height="80%">
+</div>
+</div>
+
+<div id="16" class="step slide" data-rel-x="0"
+data-rel-y="1000">
+
+<span class="markdown">
+  - use of Spectral Modelling Synthesis algorithms/processes and development of my own plot and transcription algorithms
+</span>
+<br/>
+  
+<div class="img-container">
+  <img
+    src="/assets/saracura_transcr_plot-22045bf9.png" height="80%">
+</div>
+</div>
+
+
+
+<div id="17" class="step slide" data-rel-x="0"
+data-rel-y="800">
+  
+<div class="img-container">
+  <img
+    src="/assets/saracura_transcr_partitura-43c21fcd.png" height="80%">
+</div>
+</div>
+
+
+<div id="18" class="step slide" data-rel-x="2000"
+data-y="0">
+
+<span class="markdown">
+  ## 4. Outdoor Electronics
+</span>
+
+contingences: short-time to accomplish the composition; outdoor performance; 20 min piece; people around
+<br/><Br/>
+flutist has, thus, 4 types of materials:
+<br/>
+
+</div>
+
+<div id="19" class="step slide" data-rel-x="0"
+data-rel-y="250">
+  
+(1) usual scores:<Br/><br/>
+<div class="img-container">
+  <img
+    src="/assets/B1b-eaf5b39d.png" height="80%">
+</div>
+</div>
+
+<div id="20" class="step slide" data-rel-x="0"
+data-rel-y="950">
+  
+(2) computer transcriptions (free reading; choosing materials):<Br/><br/>
+<div class="img-container">
+  <img
+    src="/assets/transc_comp1-6431b5ce.jpg" height="80%">
+</div>
+</div>
+
+<div id="21" class="step slide" data-rel-x="0"
+data-rel-y="950">
+  
+(3) improvise (previous gestures and materials)<Br/><br/>
+<div class="img-container">
+  <video height="80%" controls>
+    <source src="/assets/Snapinsta.app_video_E044662673BE0BED9BED8C975B1EA1B2_video_dashinit-61cd6c81.mp4" type="video/mp4" >
+  </video>
+  </div>
+
+
+</div>
+
+<div id="22" class="step slide" data-rel-x="0"
+data-rel-y="950">
+  
+(4) comprovisation (imitate gestures):<Br/><br/>
+<div class="img-container">
+  <img
+    src="/assets/a1-p2-6b1ee3ce.png" height="80%">
+</div>
+</div>
+
+
+<div id="23" class="step slide" data-rel-x="0"
+data-rel-y="950">
+  
+<h2>Electronics:</h2>
+
+1. Ambisonics audiotracks; soundscapes:<br/><br/>
+
+<div class="img-container">
+  <img
+    src="/assets/soundtracks-d65ea226.png" height="80%">
+</div>
+</div>
+
+
+<div id="24" class="step slide" data-rel-x="0"
+data-rel-y="950">
+
+2. Flute sound (+ spatialization)<br/><br/>
+3. Cage speakers sounds<br/><br/>
+4. Live-electronics granulator / spatialization<br/><br/>
+<div class="img-container">
+  <img
+    src="/assets/nospassarinho_mainpatch-9d9ebd83.png" height="70%">
+</div>
+</div>
+
+
+
+<div id="25" class="step slide" data-rel-x="2000"
+data-y="0">
+
+<span class="markdown">
+  ## 5. Final remarks
+</span>
+
+<h2>Work in progress... plans:</h2>
+Future use of audiovisual processes (for indoor or night contexts, for instance)<br/><br/>
+Use of other machine listening and neural network tools:<br/><br/>
+<div class="img-container" style="display: inline;">
+  <div class="sideimagescontainer">
+    <img src="/assets/Screenshot-of-FluCoMa-in-Max-pc-na-60b7950d.jpg" width="40%">
+    <p class="caption">FluCoMa Max patch<br/> <a href="https://www.harvestworks.org/april-9-10machine-listening-machine-learning-for-music-making-with-flucoma/">www.harvestworks.org/april-9-10machine-listening-machine-learning-for-music-making-with-flucoma/</a></p>
+</div>
+<div class="sideimagescontainer">
+    <img src="/assets/autoencoder-cd25adae.png" width="71%">
+    <p class="caption">Autoencoder graph<br/> <a href="https://towardsdatascience.com/applied-deep-learning-part-3-autoencoders-1c083af4d798">towardsdatascience.com/applied-deep-learning-part-3-autoencoders-1c083af4d798</a></p>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="26" class="step slide" data-rel-x="0"
+data-rel-y="950">
+  
+...to build things to listen, to learn, to compose, to perform:<br/><br/><br/>
+
+a way to build extensions with which we couple with the word and with things, people and beings around us, creating not only new perceptions, creative possibilites and intellections but, also, new affections.
+<br/><Br/>
+<div class="img-container">
+  <img
+    src="/assets/afetos-33d0bc20.png" height="70%">
+</div>
+</div>
+
+<div id="27" class="step slide" data-rel-x="0"
+data-rel-y="950">
+<br/><br/><br/><br/><br/><br/>
+
+thank you!
+<br/><Br/>
+</div>
+
+        <div id="overview" class="step" data-x="5500" data-y="2300" data-z="0"
+          data-scale="7">
+        </div>
+
+      </div>
+
+      <div id="app"></div>
+
+      <div class="impress-progressbar"><div></div></div><div
+        class="impress-progress"></div>
+    </div>
+    
+    <script>function toggleFullScreen() {
+      var icon = document.getElementById("fullscreen_icon"); // Get the <i> element
+      if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+          (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+        if (document.documentElement.requestFullScreen) {
+          document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+          document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    
+        // Change the content between <i> and </i> tags
+        icon.textContent = "fullscreen_exit";
+    
+      } else {
+        if (document.cancelFullScreen) {
+          document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        }
+    
+        // Change the content between <i> and </i> tags
+        icon.textContent = "fullscreen";
+      }
+    }
+    
+
+(function () {
+  var icon = document.getElementById('menulink_icon');
+  var menul = document.getElementById('menul');
+
+  var menuval = 0;
+  var recuo = "-12rem";
+
+  if(menuval == 1){
+    menul.style.left = "0rem";
+    icon.textContent = "chevron_left";
+  }else{
+    menul.style.left = recuo;
+    icon.textContent = "chevron_right";
+  };
+
+  icon.onclick = function () {
+    if ((menul.style.left != "0rem")) {
+      menul.style.left = "0rem";
+      icon.textContent = "chevron_left";
+    } else {
+      menul.style.left = recuo;
+      icon.textContent = "chevron_right";
+    }
+  };
+})();
+
+(function () {
+  var videoaulalink = document.getElementById('videolink_icon');
+  var ytDiv = document.getElementById('video_div');
+  
+  var nonvisible_left = "120vmax";
+  var visible_left = "77vmax";
+
+  ytDiv.style.left = nonvisible_left;
+  videoaulalink.onclick = function () {
+    if ((ytDiv.style.left == nonvisible_left)) {
+      ytDiv.style.left = visible_left;
+    } else {
+      ytDiv.style.left = nonvisible_left;
+    }
+  };
+})();
+
+    </script>
+  </body>
+  <!-- <script>
+    document.addEventListener('impress:stepenter', function(event) {
+            // Get the current step element
+            const currentStepElement = event.target;
+
+// Extract the 'id' attribute from the current step element
+const currentStepId = currentStepElement.getAttribute('id');
+
+// Perform actions based on the current step 'id'
+console.log('Entered step with id:', currentStepId);
+        // You can add more logic or trigger custom functions here
+    });
+</script> -->
+</html>
